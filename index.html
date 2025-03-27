@@ -18,29 +18,59 @@
           <li><a href="#">Coverage &amp; Cost</a></li>
           <li><a href="#">Partner with Midi</a></li>
           <li><a href="#">About</a></li>
-          <li><a href="#">Refer a Friend</a></li>
+          <li>
+            <span id="extole_zone_global_header">Refer a Friend</span>
+          </li>
         </ul>
       </nav>
       <div class="action-buttons">
         <button class="book-now">Book Now</button>
       </div>
+
+      <script type="text/javascript">
+        /* Start Extole */
+        (function (c, e, k, l, a) {
+          c[e] = c[e] || {};
+          for (c[e].q = c[e].q || []; a < l.length; ) k(l[a++], c[e]);
+        })(
+          window,
+          "extole",
+          function (c, e) {
+            e[c] =
+              e[c] ||
+              function () {
+                e.q.push([c, arguments]);
+              };
+          },
+          ["createZone"],
+          0
+        );
+        /* End Extole */
+
+        extole.createZone({
+          name: "global_header",
+          element_id: "extole_zone_global_header",
+        });
+      </script>
     </header>
 
-    <!-- Login Section -->
-    <div class="login-container">
-      <h2>Login</h2>
-      <div id="error-message" class="error"></div>
-      <form id="loginForm">
-        <div class="form-field">
-          <label for="username">Username</label>
-          <input type="text" id="username" required />
-        </div>
-        <div class="form-field">
-          <label for="password">Password</label>
-          <input type="password" id="password" required />
-        </div>
-        <button type="submit">Log In</button>
-      </form>
+    <div class="content">
+      <!-- Login Section -->
+      <div class="login-container">
+        <h2>Login</h2>
+        <div id="error-message" class="error"></div>
+        <form id="loginForm">
+          <div class="form-field">
+            <label for="username">Username</label>
+            <input type="text" id="username" required />
+          </div>
+          <div class="form-field">
+            <label for="password">Password</label>
+            <input type="password" id="password" required />
+          </div>
+          <button type="submit">Log In</button>
+        </form>
+      </div>
     </div>
 
     <!-- Login Script -->
@@ -77,7 +107,36 @@
     <footer>
       <ul>
         <li><a href="#">Clinician Login</a></li>
+        <span id="extole_zone_global_footer"
+          ><li><a href="#">Refer a Friend</a></li></span
+        >
       </ul>
+
+      <script type="text/javascript">
+        /* Start Extole */
+        (function (c, e, k, l, a) {
+          c[e] = c[e] || {};
+          for (c[e].q = c[e].q || []; a < l.length; ) k(l[a++], c[e]);
+        })(
+          window,
+          "extole",
+          function (c, e) {
+            e[c] =
+              e[c] ||
+              function () {
+                e.q.push([c, arguments]);
+              };
+          },
+          ["createZone"],
+          0
+        );
+        /* End Extole */
+
+        extole.createZone({
+          name: "global_footer",
+          element_id: "extole_zone_global_footer",
+        });
+      </script>
     </footer>
 
     <!-- EXTOLE Scripts (can be placed here or at the end of the body) -->

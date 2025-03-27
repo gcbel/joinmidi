@@ -1,10 +1,11 @@
-/* MAIN AND NAV */
+/* MAIN */
 body {
   margin: 0;
   font-family: sans-serif;
   background-color: #fafafa; /* Adjust to match your site's background */
 }
 
+/* NAV */
 header {
   display: flex;
   align-items: center;
@@ -54,12 +55,19 @@ nav a {
   font-weight: 600;
 }
 
+/* CONTENT */
+.content {
+  height: 90vh;
+  display: flex;
+}
+
 /* LOGIN */
 .login-container {
   width: 300px;
-  margin: 80px auto;
+  margin: auto auto;
   padding: 20px;
   background: #ffffff;
+  justify-content: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -105,4 +113,23 @@ button {
 
 button:hover {
   background-color: #134d89;
+}
+
+/* FOOTER */
+footer {
+  color: white;
+  background-color: #134d89;
+  display: flex;
+}
+
+footer ul {
+  list-style: none;
+  align-items: center;
+  display: flex;
+}
+
+footer ul li a {
+  color: white;
+  text-decoration: none;
+  margin: 0px 20px 0px;
 }
