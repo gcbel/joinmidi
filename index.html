@@ -56,8 +56,24 @@
 
     <div class="content">
       <!-- Login Section -->
-      <div class="login-container">
-        <h2>Login</h2>
+      <div class="login-container" id="patient-login">
+        <h2>Patient Login</h2>
+        <div id="error-message" class="error"></div>
+        <form id="loginForm">
+          <div class="form-field">
+            <label for="username">Username</label>
+            <input type="text" id="username" required />
+          </div>
+          <div class="form-field">
+            <label for="password">Password</label>
+            <input type="password" id="password" required />
+          </div>
+          <button type="submit">Log In</button>
+        </form>
+      </div>
+
+      <div class="login-container" id="clinician-login">
+        <h2>Patient Login</h2>
         <div id="error-message" class="error"></div>
         <form id="loginForm">
           <div class="form-field">
