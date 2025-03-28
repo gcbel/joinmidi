@@ -136,7 +136,13 @@ footer ul {
   display: flex;
 }
 
-footer ul li a {
+footer a {
+  color: white;
+  text-decoration: none;
+  margin: 0px 20px 0px;
+}
+
+footer a {
   color: white;
   text-decoration: none;
   margin: 0px 20px 0px;

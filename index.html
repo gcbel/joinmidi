@@ -1,130 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Midi</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./assets/reset.css" /> -->
-    <link rel="stylesheet" href="./assets/styles.css" />
+    <head>
+        <meta charset="UTF-8" />
+        <title>Midi</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <link rel="stylesheet" href="./assets/reset.css" /> -->
+        <link rel="stylesheet" href="./assets/styles.css" />
 
-    <!-- Load Extole Core Scripts -->
-    <script
-      type="text/javascript"
-      src="https://share.sharemidi.xyz/core.js"
-      fetchpriority="high"
-      async
-    ></script>
-    <!-- <script
-      type="text/javascript"
-      src="https://joinmidi.extole.io/core.js"
-      fetchpriority="high"
-      async
-    ></script> -->
-  </head>
+        <!-- Load Extole Core Scripts -->
+        <script
+        type="text/javascript"
+        src="https://share.sharemidi.xyz/core.js"
+        fetchpriority="high"
+        async
+        ></script>
+        <script
+        type="text/javascript"
+        src="https://joinmidi.extole.io/core.js"
+        fetchpriority="high"
+        async
+        ></script>
+    </head>
 
-  <body>
-    <!-- Header -->
-    <header>
-      <div class="logo">Midi</div>
-      <nav>
+    <body>
+        <!-- Header -->
+        <header>
+        <div class="logo">Midi</div>
+        <nav>
+            <ul>
+                <li><a href="#">Our Care</a></li>
+                <li><a href="#">Coverage &amp; Cost</a></li>
+                <li><a href="#">Partner with Midi</a></li>
+                <li><a href="#">About</a></li>
+                <li><span id='extole_zone_global_header'></span>
+                    <script type="text/javascript">
+                        (function(c,b,f,k,a){c[b]=c[b]||{};for(c[b].q=c[b].q||[];a<k.length;)f(k[a++],c[b])})(window,"extole",function (c,b){b[c]=b[c]||function (){b.q.push([c,arguments])}},["createZone"],0);
+                        extole.createZone({
+                            name: "global_header",
+                            element_id: 'extole_zone_global_header',
+                            data: {
+                            }
+                        });
+                    </script>
+                </li>
+            </ul>
+        </nav>
+        <div class="action-buttons">
+            <button class="book-now" id="book-now">Book Now</button>
+        </div>
+        </header>
+
+        <div class="content">
+        <!-- Login Section -->
+        <div class="login-container" id="patient-login" style="display: none">
+            <h2>Patient Login</h2>
+            <div id="error-message" class="error"></div>
+            <form id="patientLoginForm">
+            <div class="form-field">
+                <label for="username">Username</label>
+                <input type="text" id="username" required />
+            </div>
+            <div class="form-field">
+                <label for="password">Password</label>
+                <input type="password" id="password" required />
+            </div>
+            <button type="submit">Log In</button>
+            </form>
+        </div>
+
+        <div class="login-container" id="clinician-login" style="display: none">
+            <h2>Clinician Login</h2>
+            <div id="error-message" class="error"></div>
+            <form id="clinicianLoginForm">
+            <div class="form-field">
+                <label for="username">Username</label>
+                <input type="text" id="username" required />
+            </div>
+            <div class="form-field">
+                <label for="password">Password</label>
+                <input type="password" id="password" required />
+            </div>
+            <button type="submit">Log In</button>
+            </form>
+        </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
         <ul>
-          <li><a href="#">Our Care</a></li>
-          <li><a href="#">Coverage &amp; Cost</a></li>
-          <li><a href="#">Partner with Midi</a></li>
-          <li><a href="#">About</a></li>
-          <li>
-            <span id="extole_zone_global_header"></span>
-          </li>
+            <li id="clinician-login-button"><a href="#">Clinician Login</a></li>
+            <li><span id='extole_zone_global_footer'></span>
+                <script type="text/javascript">
+                    (function(c,b,f,k,a){c[b]=c[b]||{};for(c[b].q=c[b].q||[];a<k.length;)f(k[a++],c[b])})(window,"extole",function (c,b){b[c]=b[c]||function (){b.q.push([c,arguments])}},["createZone"],0);
+                    extole.createZone({
+                        name: "global_footer",
+                        element_id: 'extole_zone_global_footer',
+                        data: {
+                        }
+                    });
+                </script>
+            </li>
         </ul>
-      </nav>
-      <div class="action-buttons">
-        <button class="book-now" id="book-now">Book Now</button>
-      </div>
-
-      <!-- Inline Extole Zone Creation for Global Header -->
-      <script type="text/javascript">
-        // Wait for the Extole object to be ready
-        window.addEventListener("load", function () {
-          if (typeof extole !== "undefined") {
-            extole.createZone({
-              name: "global_header",
-              element_id: "extole_zone_global_header",
-            });
-          }
-        });
-      </script>
-    </header>
-
-    <div class="content">
-      <!-- Login Section -->
-      <div class="login-container" id="patient-login" style="display: none">
-        <h2>Patient Login</h2>
-        <div id="error-message" class="error"></div>
-        <form id="patientLoginForm">
-          <div class="form-field">
-            <label for="username">Username</label>
-            <input type="text" id="username" required />
-          </div>
-          <div class="form-field">
-            <label for="password">Password</label>
-            <input type="password" id="password" required />
-          </div>
-          <button type="submit">Log In</button>
-        </form>
-      </div>
-
-      <div class="login-container" id="clinician-login" style="display: none">
-        <h2>Clinician Login</h2>
-        <div id="error-message" class="error"></div>
-        <form id="clinicianLoginForm">
-          <div class="form-field">
-            <label for="username">Username</label>
-            <input type="text" id="username" required />
-          </div>
-          <div class="form-field">
-            <label for="password">Password</label>
-            <input type="password" id="password" required />
-          </div>
-          <button type="submit">Log In</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-      <ul>
-        <li id="clinician-login-button"><a href="#">Clinician Login</a></li>
-        <span id="extole_zone_global_footer"
-          ><li><a href="#">Refer a Friend</a></li></span
-        >
-      </ul>
-
-      <script type="text/javascript">
-        /* Start Extole */
-        (function (c, e, k, l, a) {
-          c[e] = c[e] || {};
-          for (c[e].q = c[e].q || []; a < l.length; ) k(l[a++], c[e]);
-        })(
-          window,
-          "extole",
-          function (c, e) {
-            e[c] =
-              e[c] ||
-              function () {
-                e.q.push([c, arguments]);
-              };
-          },
-          ["createZone"],
-          0
-        );
-        /* End Extole */
-
-        extole.createZone({
-          name: "global_footer",
-          element_id: "extole_zone_global_footer",
-        });
-      </script>
-    </footer>
-    <script src="assets/js/logic.js"></script>
-  </body>
+        </footer>
+        <script src="assets/js/logic.js"></script>
+    </body>
 </html>
