@@ -117,6 +117,8 @@
 
       /* Buttons */
       .btn {
+        display: flex;
+        max-width: 130px;
         display: inline-block;
         background-color: #1a61b3;
         color: #fff;
@@ -209,11 +211,10 @@
       <div class="main-content">
         <!-- Greeting Section -->
         <div class="greeting-section">
-          <h2>Hello, Gabby</h2>
+          <h2>Hello</h2>
           <p class="description">
             Book a visit to discuss a new or different symptom.
           </p>
-          <a class="btn" href="#">Book a Visit</a>
         </div>
 
         <!-- Upcoming Section -->
@@ -223,7 +224,8 @@
             No upcoming visits. Book a visit to discuss a new or different
             symptom.
           </p>
-          <a class="btn" href="#">Book a Visit</a>
+          <a class="btn" id="book-a-visit">Book a Visit</a>
+          <a class="btn" id="complete-visit" style="display: none">Complete Visit</a>
         </div>
 
         <!-- Athenahealth Portal Section -->
@@ -267,5 +269,7 @@
       fetchpriority="high"
       async
     ></script>
+
+    <script src="assets/js/dashboard.js"></script>
   </body>
 </html>
