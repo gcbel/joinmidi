@@ -95,7 +95,8 @@ label {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
@@ -121,6 +122,15 @@ button {
 
 button:hover {
   background-color: #134d89;
+}
+
+#toggle-login, #toggle-signup {
+    background-color: #ffffff;
+    color: black;
+}
+
+#toggle-login span, #toggle-signup span {
+    color: #134d89;
 }
 
 /* FOOTER */
