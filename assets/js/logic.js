@@ -42,13 +42,13 @@ patientSignupForm.addEventListener("submit", function (event) {
   
     if (email && password) {
         localStorage.setItem("email", email);
-        // Call Extole's createZone with the dynamic registration data.
-            extole.createZone({
-            name: 'registration',
-            data: {
-            "email": email,
-            }
-        });
+        // // Call Extole's createZone with the dynamic registration data.
+        //     extole.createZone({
+        //     name: 'registration',
+        //     data: {
+        //     "email": email,
+        //     }
+        // });
   
         document.getElementById("signupMessage").textContent = "Signup successful!";
         window.location.href = "dashboard.html"; // Redirect to a dashboard page
