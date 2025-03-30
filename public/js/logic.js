@@ -10,9 +10,9 @@ const errorMessage = document.getElementById("error-message");
 CLINICIAN_EMAIL = "clinician@gmail.com"
 CLINICIAN_PASSWORD = "password"
 
-/* FORM SUBMISSIONS */
+/* FUNCTIONS */
 /* Patient Login Form */
-patientLoginForm.addEventListener("submit", function (event) {
+const patientLogin = async (event) => {
     event.preventDefault(); // Prevent the from refreshing the page
 
     const email = document.getElementById("email").value;
@@ -38,10 +38,10 @@ patientLoginForm.addEventListener("submit", function (event) {
             errorMessage.textContent = "An error occurred. Please try again later.";
         }
     }
-});
+};
 
 /* Patient Signup Form */
-patientSignupForm.addEventListener("submit", function (event) {
+const patientSignup = async (event) => {
     event.preventDefault(); // Prevent the default form submission
   
     // Get form field values
@@ -70,10 +70,31 @@ patientSignupForm.addEventListener("submit", function (event) {
     } else {
         signupMessage.textContent = "Please fill out all fields.";
     }
-});  
+};  
+
+/* Checks if email exists in database */
+async function isExistingEmail(email) {
+    try {
+        const response = await fetch(`/api/users/check-email/${email}`);
+        if (response.ok) {
+            const { exists } = await response.json();
+            return exists;
+        } else {
+            return false;
+        }
+    } catch (err) {
+        return false;
+    }
+}
+
+/* Checks for a valid email */
+function isValidEmail(email) {
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    return emailRegex.test(email);
+}
 
 /* Clinician Login Form */
-clinicianLoginForm.addEventListener("submit", function (event) {
+const clinicianLogin = async (event) => {
     event.preventDefault(); // Prevent the form from refreshing the page
 
     // Get the input values
@@ -81,7 +102,7 @@ clinicianLoginForm.addEventListener("submit", function (event) {
     const password = document.getElementById("password").value;
 
     // Validate against our demo credentials
-    if (email === CLINICIAN_EMAIL && password === PASSWORD) {
+    if (email === CLINICIAN_EMAIL && password === CLINICIAN_PASSWORD) {
         try {
             const response = await fetch("/api/users/login", {
                 method: "POST",
@@ -92,7 +113,7 @@ clinicianLoginForm.addEventListener("submit", function (event) {
             if (response.ok) {
                 errorMessage.textContent = "";
                 localStorage.setItem("email", email);
-                window.location.href = "dashboard.html"; // Redirect to patient dashboard
+                window.location.href = "clinician.html"; // Redirect to clinician dashboard
             } else {
             errorMessage.textContent = "Invalid email or password.";
             }
@@ -101,9 +122,14 @@ clinicianLoginForm.addEventListener("submit", function (event) {
             errorMessage.textContent = "An error occurred. Please try again later.";
         }
     }
-});
+};
 
-/* SHOW/HIDE LOGIN DIVS */
+/* EVENT LISTENERS */
+patientLoginForm.addEventListener("submit", patientLogin);
+patientSignupForm.addEventListener("submit", patientSignup);
+clinicianLoginForm.addEventListener("submit", clinicianLogin);
+
+/* Show/Hide login divs */
 document.getElementById("toggle-login").addEventListener("click", function () {
     patientSignupSection.style.display = "none";
     patientLoginSection.style.display = "block"
