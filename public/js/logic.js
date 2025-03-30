@@ -7,23 +7,36 @@ const patientSignupForm = document.getElementById("patientSignupForm");
 const clinicianLoginForm = document.getElementById("clinicianLoginForm");
 const errorMessage = document.getElementById("error-message");
 
+CLINICIAN_EMAIL = "clinician@gmail.com"
+CLINICIAN_PASSWORD = "password"
+
+/* FORM SUBMISSIONS */
 /* Patient Login Form */
 patientLoginForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the from refreshing the page
 
-    // Get the input values
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    // Validate against our demo credentials
-    if ((email === ADVOCATE_EMAIL || email === NEWUSER_EMAIL) && password === PASSWORD) {
-        // Successful login simulation
-        errorMessage.textContent = ""; // Clear any previous error
-        localStorage.setItem("email", email);
-        window.location.href = "dashboard.html"; // Redirect to a "dashboard" page
-    } else {
-        // Show error message
-        errorMessage.textContent = "Invalid email or password.";
+    if (email && password) {
+        try {
+            const response = await fetch("/api/users/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+            
+            if (response.ok) {
+                errorMessage.textContent = "";
+                localStorage.setItem("email", email);
+                window.location.href = "dashboard.html"; // Redirect to patient dashboard
+            } else {
+                errorMessage.textContent = "Invalid email or password.";
+            }
+        } catch (err) {
+            console.error("Login error:", err);
+            errorMessage.textContent = "An error occurred. Please try again later.";
+        }
     }
 });
 
@@ -36,21 +49,28 @@ patientSignupForm.addEventListener("submit", function (event) {
     var password = document.getElementById("passwordSignup").value;
   
     if (email && password) {
-        localStorage.setItem("email", email);
-        // // Call Extole's createZone with the dynamic registration data.
-        //     extole.createZone({
-        //     name: 'registration',
-        //     data: {
-        //     "email": email,
-        //     }
-        // });
-  
-        document.getElementById("signupMessage").textContent = "Signup successful!";
-        window.location.href = "dashboard.html"; // Redirect to a dashboard page
+        try {
+            const response = await fetch("/api/users/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+      
+            if (response.ok) {
+                localStorage.setItem("email", email);
+                signupMessage.textContent = "Signup successful!";
+                window.location.href = "dashboard.html"; // Redirect to patient dashboard
+            } else {
+                signupMessage.textContent = "Signup failed. Please try again.";
+            }
+        } catch (err) {
+            console.error("Signup error:", err);
+            signupMessage.textContent = "Signup failed. Please try again.";
+        }
     } else {
-        document.getElementById("signupMessage").textContent = "Please fill out all fields.";
+        signupMessage.textContent = "Please fill out all fields.";
     }
-  });  
+});  
 
 /* Clinician Login Form */
 clinicianLoginForm.addEventListener("submit", function (event) {
@@ -62,18 +82,28 @@ clinicianLoginForm.addEventListener("submit", function (event) {
 
     // Validate against our demo credentials
     if (email === CLINICIAN_EMAIL && password === PASSWORD) {
-        localStorage.setItem("email", email);
-        
-        // Successful login simulation
-        errorMessage.textContent = ""; // Clear any previous error
-        window.location.href = "clinicianDashboard.html"; // Redirect to a "dashboard" page
-    } else {
-        // Show error message
-        errorMessage.textContent = "Invalid email or password.";
+        try {
+            const response = await fetch("/api/users/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+            
+            if (response.ok) {
+                errorMessage.textContent = "";
+                localStorage.setItem("email", email);
+                window.location.href = "dashboard.html"; // Redirect to patient dashboard
+            } else {
+            errorMessage.textContent = "Invalid email or password.";
+            }
+        } catch (err) {
+            console.error("Login error:", err);
+            errorMessage.textContent = "An error occurred. Please try again later.";
+        }
     }
 });
 
-/* EVENT LISTENERS */
+/* SHOW/HIDE LOGIN DIVS */
 document.getElementById("toggle-login").addEventListener("click", function () {
     patientSignupSection.style.display = "none";
     patientLoginSection.style.display = "block"
