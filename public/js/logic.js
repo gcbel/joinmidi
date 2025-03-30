@@ -7,11 +7,6 @@ const patientSignupForm = document.getElementById("patientSignupForm");
 const clinicianLoginForm = document.getElementById("clinicianLoginForm");
 const errorMessage = document.getElementById("error-message");
 
-const CLINICIAN_EMAIL = "clinician@gmail.com";
-const ADVOCATE_EMAIL = "advocate@gmail.com";
-const NEWUSER_EMAIL = "newuser@gmail.com";
-const PASSWORD = "password";
-
 /* Patient Login Form */
 patientLoginForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the from refreshing the page

@@ -1,0 +1,1 @@
+CREATE DATABASE midi_db;
