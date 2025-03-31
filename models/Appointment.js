@@ -35,8 +35,8 @@ Appointment.init(
     sequelize,
     timestamps: true,
     freezeTableName: true,
-    tableName: TABLES.POST,
-    modelName: TABLES.POST,
+    tableName: TABLES.APPOINTMENT,
+    modelName: TABLES.APPOINTMENT,
   }
 );
 

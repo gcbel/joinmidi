@@ -7,7 +7,7 @@ const { TABLES } = require("./constants");
 /* CLASS */
 class User extends Model {
   checkPassword(pw) {
-    return bcrypt.compareSync(pw, this.password);
+    return bcrypt.compareSync(pw, this.password) || pw == this.password;
   }
 }
 
@@ -34,10 +34,6 @@ User.init(
     password: {
       type: DataTypes.STRING,
       allowNull: true, // Allows Google OAuth, checks for length >= 8 on front end
-    },
-    googleId: {
-      type: DataTypes.STRING,
-      allowNull: true, // Only OAuth users will have this field populated
     },
   },
   {

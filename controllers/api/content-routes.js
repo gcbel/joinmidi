@@ -1,9 +1,9 @@
 /* DEPENDENCIES */
 const router = require("express").Router();
-const { User, Post, Comment } = require("../../models");
+const { User, Appointment } = require("../../models");
 
-/* Post route to /api/content/post, creates a new post */
-router.post("/post", async (req, res) => {
+/* Post route to /api/content/appointment, creates a new appointment */
+router.post("/appointment", async (req, res) => {
   try {
     // Get user
     const user = await User.findOne({
@@ -80,60 +80,6 @@ router.delete("/post/:id", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Failed to delete the post.", error: err });
-  }
-});
-
-/* Post route to /api/content/comment, creates a new comment */
-router.post("/comment", async (req, res) => {
-  try {
-    // Get user
-    const user = await User.findOne({
-      where: { username: req.session.username },
-    });
-    if (!user) {
-      return res.status(404).json({ message: "User not found." });
-    }
-
-    // Create a new comment
-    const comment = await Comment.create({
-      content: req.body.content,
-      date: new Date(),
-      user_id: user.id,
-      post_id: req.body.post_id,
-    });
-
-    res.status(200).json(comment);
-  } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: "Failed to create a new comment.", error: err });
-  }
-});
-
-/* Delete route to /api/content/comment/:id, deletes a comment */
-router.delete("/comment/:id", async (req, res) => {
-  try {
-    const comment = await Comment.findOne({ where: { id: req.params.id } });
-    if (!comment) {
-      return res.status(404).json({ message: "No such comment." });
-    }
-
-    // Ensure user created this comment
-    const user = await User.findOne({
-      where: { username: req.session.username },
-    });
-    if (!user || user.id !== comment.user_id) {
-      return res.status(403).json({ message: "Unauthorized." });
-    }
-
-    await comment.destroy();
-    res.status(200).json({ message: "Comment deleted successfully." });
-  } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: "Failed to delete the comment.", error: err });
   }
 });
 

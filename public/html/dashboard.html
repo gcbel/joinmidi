@@ -117,6 +117,8 @@
 
       /* Buttons */
       .btn {
+        display: flex;
+        max-width: 130px;
         display: inline-block;
         background-color: #1a61b3;
         color: #fff;
@@ -200,7 +202,7 @@
           </ul>
         </div>
         <div class="sidebar-footer">
-          <a class="logout-link" href="index.html">Logout</a>
+          <a id="logout-link">Logout</a>
         </div>
       </div>
       <!-- End Sidebar -->
@@ -209,17 +211,66 @@
       <div class="main-content">
         <!-- Greeting Section -->
         <div class="greeting-section">
-          <h2>Hello, Gabby</h2>
-          <a class="btn" href="#">Book a Visit</a>
+          <h2>Hello</h2>
+          <p class="description">
+            Book a visit to discuss a new or different symptom.
+          </p>
+        </div>
+
+        <!-- Upcoming Section -->
+        <div class="upcoming-section">
+          <h3>Upcoming</h3>
+          <p class="description">
+            No upcoming visits. Book a visit to discuss a new or different
+            symptom.
+          </p>
+          <a class="btn" id="book-a-visit">Book a Visit</a>
+          <a class="btn" id="complete-visit" style="display: none">Complete Visit</a>
+        </div>
+
+        <!-- Athenahealth Portal Section -->
+        <div class="athena-section">
+          <div class="section-flex">
+            <div>
+              <h3>Set up your Athenahealth portal</h3>
+              <p class="description">
+                You can see your Care Plan, lab results, and message us any
+                time.
+              </p>
+            </div>
+            <div>
+              <a class="btn" href="#">Send Email</a>
+            </div>
+          </div>
         </div>
 
         <!-- Referral Section -->
         <div class="referral-section">
-          <h3>Want to share Midi with people you know?</h3>
+          <h3>Know anyone going through Menopause?</h3>
+          <p class="description">
+            Help your friends and family feel their best.
+          </p>
           <a class="btn" href="#">Refer a Friend</a>
         </div>
       </div>
       <!-- End Main Content -->
     </div>
+
+    <!-- EXTOLE Scripts (can be placed here or at the end of the body) -->
+    <script
+      type="text/javascript"
+      src="https://share.sharemidi.xyz/core.js"
+      fetchpriority="high"
+      async
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://joinmidi.extole.io/core.js"
+      fetchpriority="high"
+      async
+    ></script>
+
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/logout.js"></script>
   </body>
 </html>

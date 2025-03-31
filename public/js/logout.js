@@ -1,5 +1,5 @@
 /* VARIABLES */
-const logoutButton = document.querySelector("#logout");
+const logoutButton = document.getElementById("logout-link");
 
 /* FUNCTIONS */
 /* Logs user out on click of logout button */

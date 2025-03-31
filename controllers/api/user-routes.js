@@ -22,9 +22,6 @@ router.post("/signup", async (req, res) => {
   try {
     // Create credentials
     const user = await User.create({
-      first: req.body.first,
-      last: req.body.last,
-      username: req.body.user,
       email: req.body.email,
       password: req.body.password,
     });
@@ -32,7 +29,7 @@ router.post("/signup", async (req, res) => {
     // Sign in user
     req.session.save(() => {
       req.session.signedIn = true;
-      req.session.username = req.body.user;
+      req.session.email = req.body.email;
       res.status(200).json(user);
     });
   } catch (err) {
@@ -47,7 +44,7 @@ router.post("/login", async (req, res) => {
     // Search for email in database
     const user = await User.findOne({
       where: {
-        username: req.body.user,
+        email: req.body.email,
       },
     });
 
@@ -63,7 +60,7 @@ router.post("/login", async (req, res) => {
     } else {
       req.session.save(() => {
         req.session.signedIn = true;
-        req.session.username = req.body.user;
+        req.session.email = req.body.email;
         res.status(200).json({ user: user, message: "Success!" });
       });
     }
@@ -81,20 +78,6 @@ router.post("/logout", (req, res) => {
     });
   } else {
     res.status(404).end();
-  }
-});
-
-router.get("/check-user/:username", async (req, res) => {
-  try {
-    const username = await User.findOne({
-      where: { username: req.params.username },
-    });
-    if (!username) {
-      return res.status(200).json({ exists: false });
-    }
-    res.status(200).json({ exists: true });
-  } catch (err) {
-    res.status(500).json(err);
   }
 });
 
