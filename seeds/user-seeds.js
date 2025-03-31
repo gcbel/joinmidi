@@ -4,18 +4,18 @@ const User = require("../models/User");
 /* VARIABLES */
 const userData = [
   {
-    username: "admin",
+    user_id: 1,
     email: "admin@gmail.com",
     password: "password",
   },
   {
-    username: "clinician",
+    user_id: 2,
     email: "clinician@gmail.com",
     isClinician: true,
     password: "password",
   },
   {
-    username: "advocate",
+    user_id: 3,
     email: "advocate@gmail.com",
     password: "password",
   },

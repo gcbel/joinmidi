@@ -3,191 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>Midi Dashboard</title>
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-      }
+    <link rel="stylesheet" href="../css/dashboard.css" />
 
-      body {
-        background-color: #fef7eb; /* Light beige/cream background */
-        margin: 0;
-      }
-
-      /* Layout container for sidebar + main content */
-      .dashboard-container {
-        display: flex;
-        min-height: 100vh;
-      }
-
-      /* Sidebar styles */
-      .sidebar {
-        width: 220px;
-        background-color: #fff;
-        border-right: 1px solid #e5e5e5;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .sidebar-header {
-        padding: 20px;
-        font-size: 24px;
-        font-weight: bold;
-        color: #1a61b3; /* Midi's brand color for the text/logo */
-      }
-
-      .nav-links {
-        display: flex;
-        flex-direction: column;
-        padding-left: 0;
-        list-style-type: none;
-      }
-
-      .nav-links li {
-        margin: 10px 0;
-      }
-
-      .nav-links a {
-        display: block;
-        text-decoration: none;
-        color: #333;
-        padding: 10px 20px;
-        transition: background-color 0.3s;
-      }
-
-      .nav-links a:hover {
-        background-color: #f2f2f2;
-      }
-
-      .sidebar-footer {
-        padding: 20px;
-        border-top: 1px solid #e5e5e5;
-      }
-
-      .logout-link {
-        text-decoration: none;
-        color: #d9534f;
-        font-weight: bold;
-        display: block;
-        text-align: center;
-        padding: 10px 0;
-        transition: background-color 0.3s;
-      }
-
-      .logout-link:hover {
-        background-color: #f2f2f2;
-      }
-
-      /* Main content area */
-      .main-content {
-        flex: 1;
-        padding: 30px;
-      }
-
-      .greeting-section,
-      .upcoming-section,
-      .athena-section,
-      .referral-section {
-        background-color: #fff;
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 4px;
-      }
-
-      /* Heading styles */
-      h1,
-      h2,
-      h3 {
-        margin-bottom: 10px;
-      }
-
-      .section-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 8px;
-      }
-
-      .section-subtitle {
-        margin-bottom: 16px;
-        color: #555;
-      }
-
-      /* Buttons */
-      .btn {
-        display: flex;
-        max-width: 130px;
-        display: inline-block;
-        background-color: #1a61b3;
-        color: #fff;
-        padding: 10px 16px;
-        border: none;
-        border-radius: 4px;
-        text-decoration: none;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: bold;
-        transition: background-color 0.3s;
-      }
-
-      .btn:hover {
-        background-color: #134d89;
-      }
-
-      /* Smaller text block under headings */
-      .description {
-        margin-bottom: 20px;
-        color: #555;
-      }
-
-      /* Utility spacing for elements that appear side by side */
-      .section-flex {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
-
-      .section-flex > div {
-        margin-bottom: 10px;
-      }
-
-      /* Make sections responsive on smaller screens */
-      @media (max-width: 768px) {
-        .dashboard-container {
-          flex-direction: column;
-        }
-        .sidebar {
-          width: 100%;
-          border-right: none;
-          border-bottom: 1px solid #e5e5e5;
-        }
-        .main-content {
-          padding: 20px;
-        }
-        .section-flex {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-      }
-    </style>
-
-    <!-- Load Extole Core Scripts First -->
-    <script
-      type="text/javascript"
-      src="https://share.sharemidi.xyz/core.js"
-      fetchpriority="high"
-      async
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://joinmidi.extole.io/core.js"
-      fetchpriority="high"
-      async
-    ></script>
+    <!-- Extole Core Scripts -->
+    <script type="text/javascript" src="https://share.sharemidi.xyz/core.js" fetchpriority="high" async></script>
+    <script type="text/javascript" src="https://joinmidi.extole.io/core.js" fetchpriority="high" async></script>
   </head>
+
   <body>
     <div class="dashboard-container">
       <!-- Sidebar -->
@@ -202,7 +24,7 @@
           </ul>
         </div>
         <div class="sidebar-footer">
-          <a id="logout-link">Logout</a>
+          <a id="logout-link" class="logout-link">Logout</a>
         </div>
       </div>
       <!-- End Sidebar -->
@@ -211,36 +33,35 @@
       <div class="main-content">
         <!-- Greeting Section -->
         <div class="greeting-section">
-          <h2>Hello</h2>
-          <p class="description">
-            Book a visit to discuss a new or different symptom.
-          </p>
+          <h2>Hello!</h2>
         </div>
 
         <!-- Upcoming Section -->
         <div class="upcoming-section">
           <h3>Upcoming</h3>
-          <p class="description">
-            No upcoming visits. Book a visit to discuss a new or different
-            symptom.
-          </p>
-          <a class="btn" id="book-a-visit">Book a Visit</a>
+          <div id="upcoming-appointments" style="padding: 0px 0px 10px"></div>
+          <a class="btn" id="book-a-visit" style="display: none">Book a Visit</a>
           <a class="btn" id="complete-visit" style="display: none">Complete Visit</a>
+        </div>
+
+        <!-- Appointments Display -->
+        <div class="upcoming-section">
+          <h3>Past Appointments</h3>
+          <div id="past-appointments">
+            <!-- Past appointments will be rendered here -->
+          </div>
         </div>
 
         <!-- Athenahealth Portal Section -->
         <div class="athena-section">
-          <div class="section-flex">
-            <div>
-              <h3>Set up your Athenahealth portal</h3>
-              <p class="description">
-                You can see your Care Plan, lab results, and message us any
-                time.
-              </p>
-            </div>
-            <div>
-              <a class="btn" href="#">Send Email</a>
-            </div>
+          <div>
+            <h3>Set up your Athenahealth portal</h3>
+            <p class="description">
+              You can see your Care Plan, lab results, and message us any time.
+            </p>
+          </div>
+          <div>
+            <a class="btn" href="#">Send Email</a>
           </div>
         </div>
 
@@ -250,25 +71,27 @@
           <p class="description">
             Help your friends and family feel their best.
           </p>
-          <a class="btn" href="#">Refer a Friend</a>
+          <div class="btn">
+            <span id='extole_zone_global_header'></span>
+            <script type="text/javascript">
+              (function(c,b,f,k,a){c[b]=c[b]||{};for(c[b].q=c[b].q||[];a<k.length;)f(k[a++],c[b])})(window,"extole",function (c,b){b[c]=b[c]||function (){b.q.push([c,arguments])}},["createZone"],0);
+              fetch('/api/users/session')
+                .then(response => response.json())
+                .then(session => {
+                    extole.createZone({
+                    name: "global_header",
+                    element_id: 'extole_zone_global_header',
+                    data: {
+                        email: session.email
+                    }
+                    });
+                });
+            </script>
+          </div>
         </div>
       </div>
       <!-- End Main Content -->
     </div>
-
-    <!-- EXTOLE Scripts (can be placed here or at the end of the body) -->
-    <script
-      type="text/javascript"
-      src="https://share.sharemidi.xyz/core.js"
-      fetchpriority="high"
-      async
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://joinmidi.extole.io/core.js"
-      fetchpriority="high"
-      async
-    ></script>
 
     <script src="../js/dashboard.js"></script>
     <script src="../js/logout.js"></script>

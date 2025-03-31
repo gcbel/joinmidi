@@ -11,6 +11,14 @@ Midi Health Playground website built for Refer a Friend Project
 - Run `npm run start` to start the application.
 
 ## Usage
+To login as a patient:
+1. Click "Book a Visit"
+2. Create a new account or login using `admin@gmail.com` or `advocate@gmail.com` with password `password`
+
+To login as a clinician:
+1. Click "Clinician Login"
+2. Use login `clinician@gmail.com` with password `password`
+
 
 ## License
 [MIT License](https://opensource.org/license/mit)

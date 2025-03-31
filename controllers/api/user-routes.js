@@ -27,9 +27,11 @@ router.post("/signup", async (req, res) => {
     });
 
     // Sign in user
+    // In the signup route
     req.session.save(() => {
       req.session.signedIn = true;
       req.session.email = req.body.email;
+      req.session.user_id = user.id; // add the user's id to the session
       res.status(200).json(user);
     });
   } catch (err) {
@@ -58,11 +60,13 @@ router.post("/login", async (req, res) => {
     if (!user || !correctPassword) {
       res.status(400).json({ message: "Incorrect username or password." });
     } else {
-      req.session.save(() => {
-        req.session.signedIn = true;
-        req.session.email = req.body.email;
-        res.status(200).json({ user: user, message: "Success!" });
-      });
+    // In the signup route
+    req.session.save(() => {
+      req.session.signedIn = true;
+      req.session.email = req.body.email;
+      req.session.user_id = user.id; // add the user's id to the session
+      res.status(200).json({ user: user, message: "Success!" });
+    });
     }
   } catch (err) {
     console.error(err);
@@ -92,6 +96,14 @@ router.get("/check-email/:email", async (req, res) => {
     res.status(200).json({ exists: true });
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+router.get('/session', (req, res) => {
+  if (req.session && req.session.email) {
+    res.json({ email: req.session.email });
+  } else {
+    res.status(401).json({ message: 'No session found or user not logged in.' });
   }
 });
 
