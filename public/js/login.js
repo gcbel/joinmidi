@@ -57,13 +57,14 @@ const patientSignup = async (event) => {
     event.preventDefault(); // Prevent the default form submission
   
     // Get form field values
+    const first_name = document.getElementById("patient-signup-name").value;
     const email = document.getElementById("patient-signup-email").value;
     const password = document.getElementById("patient-signup-password").value;
     const errorMessage = document.getElementById("patient-signup-error-message");
     const validEmail = isValidEmail(email);
     const existingEmail = await isExistingEmail(email);
   
-    if (email && password) {
+    if (firstName && email && password) {
         if (email === CLINICIAN_EMAIL && password === CLINICIAN_PASSWORD) {
             errorMessage.textContent = "Please navigate to the clinician login.";
         } else if (validEmail && !existingEmail) {
@@ -71,7 +72,7 @@ const patientSignup = async (event) => {
                 const response = await fetch("/api/users/signup", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, password }),
+                    body: JSON.stringify({ first_name, email, password }),
                 });
         
                 if (response.ok) {
@@ -81,7 +82,8 @@ const patientSignup = async (event) => {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                          email,
+                            first_name, 
+                            email,
                         }),
                       });
             

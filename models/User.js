@@ -19,6 +19,10 @@ User.init(
       autoIncrement: true,
       primaryKey: true,
     },
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,7 +31,7 @@ User.init(
         isEmail: true,
       },
     },
-    isClinician: {
+    is_clinician: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
