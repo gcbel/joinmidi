@@ -22,16 +22,17 @@ router.post("/signup", async (req, res) => {
   try {
     // Create credentials
     const user = await User.create({
+      first_name: req.body.firstName,
       email: req.body.email,
       password: req.body.password,
     });
 
     // Sign in user
-    // In the signup route
     req.session.save(() => {
       req.session.signedIn = true;
+      req.session.first_name = req.body.firstName;
       req.session.email = req.body.email;
-      req.session.user_id = user.id; // add the user's id to the session
+      req.session.user_id = user.id;
       res.status(200).json(user);
     });
   } catch (err) {
@@ -60,11 +61,11 @@ router.post("/login", async (req, res) => {
     if (!user || !correctPassword) {
       res.status(400).json({ message: "Incorrect username or password." });
     } else {
-    // In the signup route
     req.session.save(() => {
       req.session.signedIn = true;
+      req.session.first_name = user.first_name;
       req.session.email = req.body.email;
-      req.session.user_id = user.id; // add the user's id to the session
+      req.session.user_id = user.id;
       res.status(200).json({ user: user, message: "Success!" });
     });
     }
@@ -101,7 +102,8 @@ router.get("/check-email/:email", async (req, res) => {
 
 router.get('/session', (req, res) => {
   if (req.session && req.session.email) {
-    res.json({ email: req.session.email });
+    console.log(req.session)
+    res.json({ email: req.session.email, first_name: req.session.first_name });
   } else {
     res.status(401).json({ message: 'No session found or user not logged in.' });
   }

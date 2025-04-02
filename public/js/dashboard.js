@@ -1,8 +1,25 @@
 /* VARIABLES */
 const bookButton = document.getElementById("book-a-visit");
 const completeButton = document.getElementById("complete-visit");
+const greeting = document.getElementById("greeting");
 
 /* FUNCTIONS */
+async function greet() {
+  try {
+    // Fetch the session data from the endpoint
+    const response = await fetch('/api/users/session');
+    // Parse the response as JSON
+    const sessionData = await response.json();
+    const { email, first_name } = sessionData;
+    
+    // Get the greeting element (ensure it exists in your HTML)
+    const greeting = document.getElementById("greeting");
+    greeting.textContent = `Hello, ${first_name}!`;
+  } catch(err) {
+    console.error("Error fetching session data:", err);
+  }
+}
+
 async function fetchAppointments() {
   try {
     const [upcomingRes, pastRes] = await Promise.all([
@@ -120,5 +137,6 @@ completeButton.addEventListener("click", async function () {
   }
 });
 
-/* Fetch and render appointments when the page loads */
+/* Fetch and render appointments when the page loads, greet user */
 fetchAppointments();
+greet();

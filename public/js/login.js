@@ -36,7 +36,7 @@ const patientLogin = async (event) => {
                 if (response.ok) {
                     errorMessage.textContent = "";
                     localStorage.setItem("email", email);
-                    window.location.href = "html/dashboard.html"; // Redirect to patient dashboard
+                    window.location.href = "dashboard.html"; // Redirect to patient dashboard
                 } else {
                     errorMessage.textContent = "Invalid email or password.";
                 }
@@ -57,7 +57,7 @@ const patientSignup = async (event) => {
     event.preventDefault(); // Prevent the default form submission
   
     // Get form field values
-    const first_name = document.getElementById("patient-signup-name").value;
+    const firstName = document.getElementById("patient-signup-name").value;
     const email = document.getElementById("patient-signup-email").value;
     const password = document.getElementById("patient-signup-password").value;
     const errorMessage = document.getElementById("patient-signup-error-message");
@@ -72,7 +72,7 @@ const patientSignup = async (event) => {
                 const response = await fetch("/api/users/signup", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ first_name, email, password }),
+                    body: JSON.stringify({ firstName, email, password }),
                 });
         
                 if (response.ok) {
@@ -82,7 +82,7 @@ const patientSignup = async (event) => {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
-                            first_name, 
+                            firstName, 
                             email,
                         }),
                       });
@@ -92,10 +92,9 @@ const patientSignup = async (event) => {
                     }
 
                     localStorage.setItem("email", email);
-                    signupMessage.textContent = "Signup successful!";
-                    window.location.href = "html/dashboard.html"; // Redirect to patient dashboard
+                    window.location.href = "dashboard.html"; // Redirect to patient dashboard
                 } else {
-                    signupMessage.textContent = "Signup failed. Please try again.";
+                    errorMessage.textContent = "Signup failed. Please try again.";
                 }
             } catch (err) {
                 console.error("Signup error:", err);
@@ -131,7 +130,7 @@ const clinicianLogin = async (event) => {
                 if (response.ok) {
                     errorMessage.textContent = "";
                     localStorage.setItem("email", email);
-                    window.location.href = "html/clinician.html"; // Redirect to clinician dashboard
+                    window.location.href = "clinician.html"; // Redirect to clinician dashboard
                 } else {
                 errorMessage.textContent = "Invalid email or password.";
                 }
