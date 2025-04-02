@@ -76,6 +76,19 @@ const patientSignup = async (event) => {
         
                 if (response.ok) {
                     errorMessage.textContent = ""
+
+                    const extoleResponse = await fetch("/api/extole/signup", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          email,
+                        }),
+                      });
+            
+                    if (!extoleResponse.ok) {
+                    console.error("Extole signup event failed");
+                    }
+
                     localStorage.setItem("email", email);
                     signupMessage.textContent = "Signup successful!";
                     window.location.href = "html/dashboard.html"; // Redirect to patient dashboard
