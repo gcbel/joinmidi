@@ -110,12 +110,31 @@
                 <button type="submit">Log in</button>
                 </form>
             </div>
+
+            <!-- Admin Login Section -->
+            <div class="login-container" id="admin-login" style="display: none">
+                <h2>Admin Login</h2>
+                <div id="admin-login-error-message" class="error"></div>
+                <form id="adminLoginForm">
+                <div class="form-field">
+                    <label for="email">Email <Address></Address></label>
+                    <input type="text" id="admin-login-email" required />
+                </div>
+                <div class="form-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="admin-login-password" required />
+                </div>
+                <div id="admin-login-message" class="message"></div>
+                <button type="submit">Log in</button>
+                </form>
+            </div>
         </div>
 
         <!-- Footer -->
         <footer>
         <ul>
-            <li id="clinician-login-button"><a href="#">Clinician Login</a></li>
+            <li id="admin-login-button"><a>Admin Login</a></li>
+            <li id="clinician-login-button"><a>Clinician Login</a></li>
             <li><span id='extole_zone_global_footer'></span>
                 <script type="text/javascript">
                     (function(c,b,f,k,a){c[b]=c[b]||{};for(c[b].q=c[b].q||[];a<k.length;)f(k[a++],c[b])})(window,"extole",function (c,b){b[c]=b[c]||function (){b.q.push([c,arguments])}},["createZone"],0);

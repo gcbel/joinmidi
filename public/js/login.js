@@ -2,17 +2,21 @@
 var patientLoginSection = document.getElementById("patient-login");
 var patientSignupSection = document.getElementById("patient-signup");
 var clinicianLoginSection = document.getElementById("clinician-login");
+var adminLoginSection = document.getElementById("admin-login");
 
 const patientLoginForm = document.getElementById("patientLoginForm");
 const patientSignupForm = document.getElementById("patientSignupForm");
 const clinicianLoginForm = document.getElementById("clinicianLoginForm");
+const adminLoginForm = document.getElementById("adminLoginForm");
 
 const patientLoginMessage = document.getElementById("patient-login-message");
 const signupMessage = document.getElementById("signup-message");
 const clinicianLoginMessage = document.getElementById("clinician-login-message");
+const adminLoginMessage = document.getElementById("admin-login-message");
 
+ADMIN_EMAIL = "admin@gmail.com"
 CLINICIAN_EMAIL = "clinician@gmail.com"
-CLINICIAN_PASSWORD = "password"
+PASSWORD = "password"
 
 /* FUNCTIONS */
 /* Patient Login Form */
@@ -35,7 +39,6 @@ const patientLogin = async (event) => {
                 
                 if (response.ok) {
                     errorMessage.textContent = "";
-                    localStorage.setItem("email", email);
                     window.location.href = "dashboard.html"; // Redirect to patient dashboard
                 } else {
                     errorMessage.textContent = "Invalid email or password.";
@@ -91,7 +94,6 @@ const patientSignup = async (event) => {
                     console.error("Extole signup event failed");
                     }
 
-                    localStorage.setItem("email", email);
                     window.location.href = "dashboard.html"; // Redirect to patient dashboard
                 } else {
                     errorMessage.textContent = "Signup failed. Please try again.";
@@ -129,8 +131,44 @@ const clinicianLogin = async (event) => {
                 
                 if (response.ok) {
                     errorMessage.textContent = "";
-                    localStorage.setItem("email", email);
                     window.location.href = "clinician.html"; // Redirect to clinician dashboard
+                } else {
+                errorMessage.textContent = "Invalid email or password.";
+                }
+            } catch (err) {
+                console.error("Login error:", err);
+                errorMessage.textContent = "An error occurred. Please try again later.";
+            }
+        } else {
+            errorMessage.textContent = "This email and password combination doesn't match our records. Please try again.";
+        }
+    } else {
+        errorMessage.textContent = "Please fill out all fields.";
+    }
+};
+
+/* Admin Login Form */
+const adminLogin = async (event) => {
+    event.preventDefault(); // Prevent the form from refreshing the page
+
+    // Get the input values
+    const email = document.getElementById("admin-login-email").value;
+    const password = document.getElementById("admin-login-password").value;
+    const errorMessage = document.getElementById("admin-login-error-message");
+
+    // Validate against our demo credentials
+    if (email && password) {
+        if (email === ADMIN_EMAIL && password === PASSWORD) {
+            try {
+                const response = await fetch("/api/users/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password }),
+                });
+                
+                if (response.ok) {
+                    errorMessage.textContent = "";
+                    window.location.href = "admin.html"; // Redirect to admin dashboard
                 } else {
                 errorMessage.textContent = "Invalid email or password.";
                 }
@@ -171,6 +209,7 @@ function isValidEmail(email) {
 patientLoginForm.addEventListener("submit", patientLogin);
 patientSignupForm.addEventListener("submit", patientSignup);
 clinicianLoginForm.addEventListener("submit", clinicianLogin);
+adminLoginForm.addEventListener("submit", adminLogin);
 
 /* Show/Hide login divs */
 document.getElementById("toggle-login").addEventListener("click", function () {
@@ -190,6 +229,7 @@ document.getElementById("book-now").addEventListener("click", function () {
     ) {
         clinicianLoginSection.style.display = "none";
         patientLoginSection.style.display = "none";
+        adminLoginSection.style.display = "none";
         patientSignupSection.style.display = "block";
     } else {
         patientSignupSection.style.display = "none";
@@ -203,8 +243,23 @@ document.getElementById("clinician-login-button").addEventListener("click", func
     ) {
         patientSignupSection.style.display = "none"
         patientLoginSection.style.display = "none";
+        adminLoginSection.style.display = "none";
         clinicianLoginSection.style.display = "block";
     } else {
         clinicianLoginSection.style.display = "none";
+    }
+});
+
+document.getElementById("admin-login-button").addEventListener("click", function () {
+    if (
+        adminLoginSection.style.display === "none" ||
+        adminLoginSection.style.display === ""
+    ) {
+        patientSignupSection.style.display = "none"
+        patientLoginSection.style.display = "none";
+        clinicianLoginSection.style.display = "none";
+        adminLoginSection.style.display = "block";
+    } else {
+        adminLoginSection.style.display = "none";
     }
 });

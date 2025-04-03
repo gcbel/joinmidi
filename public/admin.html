@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Midi Dashboard</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #fef7eb; /* Light beige/cream background */
+        margin: 0;
+      }
+
+      /* Layout container for sidebar + main content */
+      .dashboard-container {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* Sidebar styles */
+      .sidebar {
+        width: 220px;
+        background-color: #fff;
+        border-right: 1px solid #e5e5e5;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .sidebar-header {
+        padding: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #1a61b3; /* Midi's brand color for the text/logo */
+      }
+
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        list-style-type: none;
+      }
+
+      .nav-links li {
+        margin: 10px 0;
+      }
+
+      .nav-links a {
+        display: block;
+        text-decoration: none;
+        color: #333;
+        padding: 10px 20px;
+        transition: background-color 0.3s;
+      }
+
+      .nav-links a:hover {
+        background-color: #f2f2f2;
+      }
+
+      .sidebar-footer {
+        padding: 20px;
+        border-top: 1px solid #e5e5e5;
+      }
+
+      .logout-link {
+        text-decoration: none;
+        color: #d9534f;
+        font-weight: bold;
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+        transition: background-color 0.3s;
+      }
+
+      .logout-link:hover {
+        background-color: #f2f2f2;
+      }
+
+      /* Main content area */
+      .main-content {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .greeting-section,
+      .upcoming-section,
+      .athena-section,
+      .referral-section {
+        background-color: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+      }
+
+      /* Heading styles */
+      h1,
+      h2,
+      h3 {
+        margin-bottom: 10px;
+      }
+
+      .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .section-subtitle {
+        margin-bottom: 16px;
+        color: #555;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-block;
+        background-color: #1a61b3;
+        color: #fff;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #134d89;
+      }
+
+      /* Smaller text block under headings */
+      .description {
+        margin-bottom: 20px;
+        color: #555;
+      }
+
+      /* Utility spacing for elements that appear side by side */
+      .section-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .section-flex > div {
+        margin-bottom: 10px;
+      }
+
+      /* Make sections responsive on smaller screens */
+      @media (max-width: 768px) {
+        .dashboard-container {
+          flex-direction: column;
+        }
+        .sidebar {
+          width: 100%;
+          border-right: none;
+          border-bottom: 1px solid #e5e5e5;
+        }
+        .main-content {
+          padding: 20px;
+        }
+        .section-flex {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+
+    <!-- Extole Core Scripts -->
+    <script type="text/javascript" src="https://share.sharemidi.xyz/core.js" fetchpriority="high" async></script>
+    <script type="text/javascript" src="https://joinmidi.extole.io/core.js" fetchpriority="high" async></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div>
+          <div class="sidebar-header">MIDI</div>
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Patient Portal</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Midi Customer</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-footer">
+          <a id="logout-link">Logout</a>
+        </div>
+      </div>
+      <!-- End Sidebar -->
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Greeting Section -->
+        <div class="greeting-section">
+          <h2 id="greeting">Hello!</h2>
+        </div>
+
+        <!-- Referral Section -->
+        <div class="referral-section">
+          <h3>Want to add an influencer to the Refer a Friend Program?</h3>
+          <li><span id='extole_zone_affiliate_welcome'></span>
+            <script type="text/javascript">
+                (function(c,b,f,k,a){c[b]=c[b]||{};for(c[b].q=c[b].q||[];a<k.length;)f(k[a++],c[b])})(window,"extole",function (c,b){b[c]=b[c]||function (){b.q.push([c,arguments])}},["createZone"],0);
+                extole.createZone({
+                    name: "affiliate_welcome",
+                    element_id: 'extole_zone_affiliate_welcome',
+                    data: {
+                    }
+                });
+            </script>
+        </li>
+        </div>
+      </div>
+      <!-- End Main Content -->
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/logout.js"></script>
+  </body>
+</html>
