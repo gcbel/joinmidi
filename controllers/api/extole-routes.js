@@ -8,8 +8,7 @@ require("dotenv").config();
 router.post("/account_opened", async (req, res) => {
   // Extract data from req.body
   const { email, first_name } = req.body;
-
-  // Build the event payload as expected by Extole
+  
   const eventData = {
     event_name: "account_opened",
     data: {
@@ -27,10 +26,9 @@ router.post("/account_opened", async (req, res) => {
 });
 
 router.post("/appointment_scheduled", async (req, res) => {
-  // Extract data from req.body
+  // Extract data
   const { email, first_name } = req.body;
 
-  // Build the event payload as expected by Extole
   const eventData = {
     event_name: "appointment_scheduled",
     data: {
@@ -48,10 +46,9 @@ router.post("/appointment_scheduled", async (req, res) => {
 });
 
 router.post("/appointment_completed", async (req, res) => {
-  // Extract data from req.body
+  // Extract data
   const { email, first_name } = req.body;
 
-  // Build the event payload as expected by Extole
   const eventData = {
     event_name: "appointment_completed",
     data: {

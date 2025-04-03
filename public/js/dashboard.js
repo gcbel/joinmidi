@@ -2,17 +2,18 @@
 const bookButton = document.getElementById("book-a-visit");
 const completeButton = document.getElementById("complete-visit");
 const greeting = document.getElementById("greeting");
+var session = null
 
 /* FUNCTIONS */
 async function greet() {
   try {
     // Fetch the session data from the endpoint
     const response = await fetch('/api/users/session');
-    // Parse the response as JSON
     const sessionData = await response.json();
     const { email, first_name } = sessionData;
+    session = { email, first_name }
     
-    // Get the greeting element (ensure it exists in your HTML)
+    // Greet
     const greeting = document.getElementById("greeting");
     greeting.textContent = `Hello, ${first_name}!`;
   } catch(err) {
@@ -74,8 +75,7 @@ function renderAppointments(upcoming, past) {
 // Function to book a new appointment
 async function bookAppointment() {
   try {
-    // For demo: book an appointment with the current date/time.
-    // You might want to allow the user to pick a date/time.
+    // Book an appointment with the current date/time + 1 day.
     const date = new Date().toISOString();
     const response = await fetch('/api/appointments/book', {
       method: 'POST',
@@ -84,6 +84,7 @@ async function bookAppointment() {
     });
     if (response.ok) {
       console.log("Appointment booked successfully.");
+      sendAppointmentScheduled();
       fetchAppointments(); // Refresh appointments
     } else {
       console.error("Failed to book appointment.");
@@ -108,6 +109,65 @@ async function completeAppointment(appointmentId) {
     }
   } catch (err) {
     console.error("Error completing appointment:", err);
+  }
+}
+
+/* EXTOLE APPOINTMENT FUNCTIONS */
+async function sendAppointmentScheduled(email, firstName) {
+  if (session) {
+    const { email, firstName } = session
+
+    try {
+        const response = await fetch('/api/extole/appointment_scheduled', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+            email: email,
+            first_name: firstName
+            })
+        });
+    
+        if (!response.ok) {
+            throw new Error(`Extole server error: ${response.status}`);
+        }
+    
+        const data = await response.json();
+        console.log("Appointment scheduled event sent:", data);
+        return data;
+    } catch (err) {
+        console.error("Error sending appointment scheduled event:", err);
+    }
+  } else {
+    console.error("Error fetching session, could not send event")
+  }
+}
+
+async function sendAppointmentCompleted() {
+  if (session) {
+    const { email, firstName } = session
+
+    try {
+        const response = await fetch('/api/extole/appointment_completed', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+            email: email,
+            first_name: firstName
+            })
+        });
+    
+        if (!response.ok) {
+            throw new Error(`Extole server error: ${response.status}`);
+        }
+    
+        const data = await response.json();
+        console.log("Appointment completed event sent:", data);
+        return data;
+    } catch (err) {
+        console.error("Error sending appointment completed event:", err);
+    }
+  } else {
+    console.error("Error fetching session, could not send event")
   }
 }
 

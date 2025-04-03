@@ -29,7 +29,11 @@ const patientLogin = async (event) => {
     const existingEmail = await isExistingEmail(email);
 
     if (email && password) {
-        if (existingEmail) {
+        if (email === CLINICIAN_EMAIL && password === PASSWORD) {
+            errorMessage.textContent = "Please navigate to the clinician login.";
+        } else if (email === ADMIN_EMAIL && password === PASSWORD) {
+            errorMessage.textContent = "Please navigate to the admin login.";
+        } else if (existingEmail) {
             try {
                 const response = await fetch("/api/users/login", {
                     method: "POST",
@@ -68,8 +72,10 @@ const patientSignup = async (event) => {
     const existingEmail = await isExistingEmail(email);
   
     if (firstName && email && password) {
-        if (email === CLINICIAN_EMAIL && password === CLINICIAN_PASSWORD) {
+        if (email === CLINICIAN_EMAIL && password === PASSWORD) {
             errorMessage.textContent = "Please navigate to the clinician login.";
+        } else if (email === ADMIN_EMAIL && password === PASSWORD) {
+            errorMessage.textContent = "Please navigate to the admin login.";
         } else if (validEmail && !existingEmail) {
             try {
                 const response = await fetch("/api/users/signup", {
@@ -80,20 +86,7 @@ const patientSignup = async (event) => {
         
                 if (response.ok) {
                     errorMessage.textContent = ""
-
-                    const extoleResponse = await fetch("/api/extole/signup", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            firstName, 
-                            email,
-                        }),
-                      });
-            
-                    if (!extoleResponse.ok) {
-                    console.error("Extole signup event failed");
-                    }
-
+                    sendAccountOpened(email, firstName)      // Send info to Extole
                     window.location.href = "dashboard.html"; // Redirect to patient dashboard
                 } else {
                     errorMessage.textContent = "Signup failed. Please try again.";
@@ -203,6 +196,30 @@ async function isExistingEmail(email) {
 function isValidEmail(email) {
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return emailRegex.test(email);
+}
+
+/* EXTOLE ACCOUNT OPENED FUNCTIION */
+async function sendAccountOpened(email, firstName) {
+    try {
+        const response = await fetch('/api/extole/account_opened', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+            email: email,
+            first_name: firstName
+            })
+        });
+    
+        if (!response.ok) {
+            throw new Error(`Extole server error: ${response.status}`);
+        }
+    
+        const data = await response.json();
+        console.log("Account opened event sent:", data);
+        return data;
+    } catch (err) {
+        console.error("Error sending account opened event:", err);
+    }
 }
 
 /* EVENT LISTENERS */
