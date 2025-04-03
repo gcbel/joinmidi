@@ -19,6 +19,10 @@ To login as a clinician:
 1. Click "Clinician Login"
 2. Use login `clinician@gmail.com` with password `password`
 
+To login as an admin (Derek):
+1. Click "Admin Login"
+2. Login using `admin@gmail.com` with password `password`
+
 
 ## License
 [MIT License](https://opensource.org/license/mit)
