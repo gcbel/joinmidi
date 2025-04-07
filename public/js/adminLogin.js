@@ -114,7 +114,7 @@ adminLoginForm.addEventListener("submit", adminLogin);
 
 /* Show/Hide login divs */
 document.getElementById("book-now").addEventListener("click", function () {
-    window.location.href = "login"
+    window.location.href = "login.html"
 });
 
 document.getElementById("clinician-login-button").addEventListener("click", function () {
