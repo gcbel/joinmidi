@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-require("dotenv").config();
+require("dotenv").config({ path: "./../../.env" });
 
 /* ROUTES */
 // router.post("/account_opened", async (req, res) => {
