@@ -14,6 +14,10 @@ header {
   background-color: #f8f6f1; /* Light neutral background, adjust as needed */
 }
 
+.extole-header {
+  background-color: #ffffff;
+}
+
 .logo {
   font-size: 24px;
   font-weight: bold;
@@ -110,7 +114,7 @@ input[type="email"] {
 }
 
 button {
-  width: 100%;
+  /* width: 100%; */
   padding: 10px;
   background-color: #1a61b3;
   color: #fff;
@@ -144,12 +148,6 @@ footer ul {
   list-style: none;
   align-items: center;
   display: flex;
-}
-
-footer a {
-  color: white;
-  text-decoration: none;
-  margin: 0px 20px 0px;
 }
 
 footer a {
