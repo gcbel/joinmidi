@@ -8,6 +8,7 @@ Midi Health Playground website built for Refer a Friend Project
 - Install dependencies with `npm install`. 
 - Initialize database using psql (run `psql -U your_username -d postgres` and `CREATE DATABASE midi_db`)
 - Configure environment variables as specified in the .env.EXAMPLE file in a .env file in the server folder.
+- Run `npm run seed` to seed database with user information.
 - Run `npm run start` to start the application.
 
 ## Usage
