@@ -5,25 +5,25 @@ const axios = require("axios");
 require("dotenv").config();
 
 /* ROUTES */
-router.post("/account_opened", async (req, res) => {
-  // Extract data from req.body
-  const { email, first_name } = req.body;
+// router.post("/account_opened", async (req, res) => {
+//   // Extract data from req.body
+//   const { email, first_name } = req.body;
   
-  const eventData = {
-    event_name: "account_opened",
-    data: {
-      first_name,
-      email
-    }
-  };
+//   const eventData = {
+//     event_name: "account_opened",
+//     data: {
+//       first_name,
+//       email
+//     }
+//   };
 
-  try {
-    const eventResponse = await sendEvent(eventData);
-    res.status(200).json({ message: "Account opened event sent.", data: eventResponse });
-  } catch (err) {
-    res.status(500).json({ message: `Failed to send account opened event: ${err}` });
-  }
-});
+//   try {
+//     const eventResponse = await sendEvent(eventData);
+//     res.status(200).json({ message: "Account opened event sent.", data: eventResponse });
+//   } catch (err) {
+//     res.status(500).json({ message: `Failed to send account opened event: ${err}` });
+//   }
+// });
 
 router.post("/appointment_scheduled", async (req, res) => {
   // Extract data

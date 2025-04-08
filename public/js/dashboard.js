@@ -103,6 +103,7 @@ async function completeAppointment(appointmentId) {
     });
     if (response.ok) {
       console.log("Appointment completed successfully.");
+      sendAppointmentCompleted();
       fetchAppointments(); // Refresh appointments
     } else {
       console.error("Failed to complete appointment.");

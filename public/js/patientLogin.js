@@ -120,26 +120,15 @@ function isValidEmail(email) {
 
 /* EXTOLE ACCOUNT OPENED FUNCTIION */
 async function sendAccountOpened(email, firstName) {
-    try {
-        const response = await fetch('/api/extole/account_opened', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-            email: email,
-            first_name: firstName
-            })
-        });
-    
-        if (!response.ok) {
-            throw new Error(`Extole server error: ${response.status}`);
+    console.log("Account creation sending to Extole with data:", email, firstName)
+    (function(c,b,f,k,a){c[b]=c[b]||{};for(c[b].q=c[b].q||[];a<k.length;)f(k[a++],c[b])})(window,"extole",function (c,b){b[c]=b[c]||function (){b.q.push([c,arguments])}},["createZone"],0);
+    extole.createZone({
+        name: "account_created",
+        data: {
+            "email": email,
+            "first_name": firstName,
         }
-    
-        const data = await response.json();
-        console.log("Account opened event sent:", data);
-        return data;
-    } catch (err) {
-        console.error("Error sending account opened event:", err);
-    }
+    });
 }
 
 /* EVENT LISTENERS */
