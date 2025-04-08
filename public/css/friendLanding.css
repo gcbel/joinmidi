@@ -11,6 +11,16 @@
     width: 900px !important;
 }
 
+.extole-referral-reminder-view .extole-referral-reminder-wrapper .extole-submit-button {
+    min-width: 170px;
+    width: 30%;
+    margin: 0px 5px 10px 5px !important;
+}
+
+.extole-referral-reminder-view .extole-referral-reminder-wrapper .extole-footer {
+    padding: 0px 20px !important;
+}
+
 @media (max-width: 977px) {
     .extole-referral-reminder-wrapper {
         width: 100% !important;
