@@ -24,7 +24,7 @@ const clinicianLogin = async (event) => {
 
     // Validate against our demo credentials
     if (email && password) {
-        if (email === CLINICIAN_EMAIL && password === CLINICIAN_PASSWORD) {
+        if (email === CLINICIAN_EMAIL && password === PASSWORD) {
             try {
                 const response = await fetch("/api/users/login", {
                     method: "POST",
