@@ -8,6 +8,10 @@ const patientSignupForm = document.getElementById("patientSignupForm");
 const patientLoginMessage = document.getElementById("patient-login-message");
 const signupMessage = document.getElementById("signup-message");
 
+ADMIN_EMAIL = "admin@gmail.com"
+CLINICIAN_EMAIL = "clinician@gmail.com"
+PASSWORD = "password"
+
 /* FUNCTIONS */
 /* Patient Login Form */
 const patientLogin = async (event) => {
