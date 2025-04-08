@@ -2,6 +2,10 @@
     width: 900px !important;
 }
 
+.extole-referral-reminder-wrapper h1 {
+    display: block !important;
+}
+
 .extole-referral-reminder-wrapper .extole-image {
     width: 100% !important;
     top: -20px;
@@ -12,14 +16,14 @@
 }
 
 .extole-referral-reminder-view .extole-referral-reminder-wrapper .extole-submit-button {
-    min-width: 170px;
-    width: 30%;
+    min-width: 170px !important;
+    width: 30% !important;
     margin: 0px 5px 10px 5px !important;
 }
 
-.extole-referral-reminder-view .extole-referral-reminder-wrapper .extole-footer {
+/* .extole-referral-reminder-view .extole-referral-reminder-wrapper .extole-footer {
     padding: 0px 20px !important;
-}
+} */
 
 @media (max-width: 977px) {
     .extole-referral-reminder-wrapper {
