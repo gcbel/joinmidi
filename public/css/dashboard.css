@@ -154,6 +154,10 @@ h3 {
     text-decoration: none;
 }
 
+button {
+    width: 100%;
+}
+
 /* Make sections responsive on smaller screens */
 @media (max-width: 768px) {
     .dashboard-container {
