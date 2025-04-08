@@ -67,6 +67,7 @@ router.post("/appointment_completed", async (req, res) => {
 
 /* EVENTS */
 async function sendEvent(eventData) {
+  console.log(process.env.EXTOLE_ACCESS_KEY)
   try {
     const response = await axios.post(
       "https://api.extole.com/v5/events",
