@@ -5,26 +5,6 @@ const axios = require("axios");
 require("dotenv").config({ path: "./../../.env" });
 
 /* ROUTES */
-// router.post("/account_opened", async (req, res) => {
-//   // Extract data from req.body
-//   const { email, first_name } = req.body;
-  
-//   const eventData = {
-//     event_name: "account_opened",
-//     data: {
-//       first_name,
-//       email
-//     }
-//   };
-
-//   try {
-//     const eventResponse = await sendEvent(eventData);
-//     res.status(200).json({ message: "Account opened event sent.", data: eventResponse });
-//   } catch (err) {
-//     res.status(500).json({ message: `Failed to send account opened event: ${err}` });
-//   }
-// });
-
 router.post("/appointment_scheduled", async (req, res) => {
   // Extract data
   const { email, first_name } = req.body;
@@ -67,7 +47,7 @@ router.post("/appointment_completed", async (req, res) => {
 
 /* EVENTS */
 async function sendEvent(eventData) {
-  console.log(process.env.EXTOLE_ACCESS_KEY)
+  console.log("ACCESS KEY:", process.env.EXTOLE_ACCESS_TOKEN)
   try {
     const response = await axios.post(
       "https://api.extole.com/v5/events",
@@ -75,7 +55,7 @@ async function sendEvent(eventData) {
       {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.EXTOLE_ACCESS_KEY}`
+          "Authorization": `Bearer ${process.env.EXTOLE_ACCESS_TOKEN}`
         }
       }
     );
